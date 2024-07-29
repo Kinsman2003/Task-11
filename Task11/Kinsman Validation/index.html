@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        body {
+            background-image: url(img/ava.jpg);
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-size: 18px; /* Increase the base font size */
+        }
+
+        .task-bar {
+            background-color: #131414c0;
+            color: rgb(29, 206, 255);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-bar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .task-bar .nav-links {
+            list-style: none;
+            margin: 10px 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .task-bar .nav-links li {
+            margin: 5px;
+        }
+
+        .task-bar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .task-bar .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .task-bar .user-menu {
+            font-size: 18px;
+        }
+
+        .task-bar .user-menu img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .container {
+            background: rgba(240, 240, 240, 0.6); /* Adjust transparency by changing the last value (0.6) */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.845);
+            max-width: 400px;
+            width: 90%;
+            margin: 20px auto; /* Center the form and give margin from task bar */
+        }
+
+        h1 {
+            font-size: 28px; /* Increase the font size for the heading */
+            margin-bottom: 20px;
+            color: #000000;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #333333;
+            font-size: 22px; /* Increase the font size for labels */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 12px; /* Increase padding for better readability */
+            margin-top: 5px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 18px; /* Increase the font size for input fields */
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #00e9fa;
+            outline: none;
+        }
+
+        .error {
+            color: #ff0000;
+            font-size: 14px; /* Increase the font size for error messages */
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 15px; /* Increase padding for the submit button */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 20px; /* Increase the font size for the submit button */
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00ccff;
+        }
+
+        .gender-container,
+        .terms-container,
+        .robot-container {
+            margin-top: 10px;
+        }
+
+        .gender-container {
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+
+        .gender-container label {
+            font-size: 18px; /* Adjust font size for gender labels */
+            display: block;
+        }
+
+        .gender-container input {
+            margin-right: 10px;
+        }
+
+        .terms-container,
+        .robot-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .terms-container input[type="checkbox"],
+        .robot-container input[type="checkbox"] {
+            margin-right: 10px; /* Space between checkbox and label */
+        }
+
+        .terms-container label,
+        .robot-container label {
+            font-size: 18px; /* Adjust font size if needed */
+            margin: 0; /* Remove margin to reduce space */
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .task-bar {
+                padding: 15px;
+                flex-direction: column;
+            }
+
+            .task-bar .logo {
+                font-size: 20px;
+            }
+
+            .task-bar .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .task-bar .nav-links li {
+                margin: 5px 0;
+            }
+
+            .container {
+                padding: 15px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            label {
+                font-size: 20px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                font-size: 16px;
+            }
+
+            input[type="submit"] {
+                font-size: 18px;
+            }
+
+            .gender-container label,
+            .terms-container label,
+            .robot-container label {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .task-bar .logo {
+                font-size: 18px;
+            }
+
+            .task-bar .nav-links a {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 10px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            label {
+                font-size: 18px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                font-size: 14px;
+            }
+
+            input[type="submit"] {
+                font-size: 16px;
+            }
+
+            .gender-container label,
+            .terms-container label,
+            .robot-container label {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="task-bar">
+        <div class="logo">
+            <span>MyApp</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="user-menu">
+            <span>KINSMAN U</span>
+            <img src="img/pf.jpg" alt="User profile">
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Registration:</h1>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name"><br>
+            <span id="nameError" class="error"></span><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <span id="emailError" class="error"></span><br>
+            
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <span id="passwordError" class="error"></span><br>
+            
+            <label for="confirmPassword">Confirm Password:</label><br>
+            <input type="password" id="confirmPassword" name="confirmPassword"><br>
+            <span id="confirmPasswordError" class="error"></span><br>
+            
+            <label for="showGender">Gender:(optional)</label>
+            <label for="showGenderYes">Yes</label>
+            <input type="radio" id="showGenderYes" name="showGender" value="yes" onchange="toggleGender()">
+            <label for="showGenderNo">No</label>
+            <input type="radio" id="showGenderNo" name="showGender" value="no" onchange="toggleGender()" checked>
+            
+            <div class="gender-container" id="genderContainer">
+                <label><u>Gender:</u></label><br>
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="female">Female</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="other">Other</label>
+                <input type="radio" id="other" name="gender" value="other">
+                <span id="genderError" class="error"></span><br>
+            </div>  
+            <h3>Terms&Services</h3>
+            <div class="terms-container">
+                <input type="checkbox" id="terms" name="terms">
+                <label for="terms">I agree to the <a href="#">Terms of Service</a></label>
+            </div>
+            <span id="termsError" class="error"></span><br>
+
+            <h3>Verification</h3>
+            <div class="robot-container">
+                <input type="checkbox" id="robot" name="robot">
+                <label for="robot">I'm not a robot</label>
+            </div>
+            <span id="robotError" class="error"></span><br>
+            
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("name").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault(); // Prevent form submission
+                document.getElementById("email").focus();
+            }
+        });
+
+        function toggleGender() {
+            const genderContainer = document.getElementById("genderContainer");
+            const showGenderYes = document.getElementById("showGenderYes").checked;
+            genderContainer.style.display = showGenderYes ? "block" : "none";
+        }
+
+        function validateForm() {
+            // Clear previous error messages
+            document.getElementById("nameError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+            document.getElementById("confirmPasswordError").innerText = "";
+            document.getElementById("genderError").innerText = "";
+            document.getElementById("termsError").innerText = "";
+            document.getElementById("robotError").innerText = "";
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+            const gender = document.querySelector('input[name="gender"]:checked');
+            const terms = document.getElementById("terms").checked;
+            const robot = document.getElementById("robot").checked;
+            const showGenderYes = document.getElementById("showGenderYes").checked;
+
+            // Initialize form validity
+            let formIsValid = true;
+
+            // Validate name
+            const namePattern = /^[A-Za-z\s]+$/;
+            if (name === "") {
+                document.getElementById("nameError").innerText = "Name is required.";
+                formIsValid = false;
+            } else if (!namePattern.test(name)) {
+                document.getElementById("nameError").innerText = "Name must contain only letters.";
+                formIsValid = false;
+            }
+
+            // Validate email
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email === "") {
+                document.getElementById("emailError").innerText = "Email is required.";
+                formIsValid = false;
+            } else if (!emailPattern.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format.";
+                formIsValid = false;
+            }
+
+            // Validate password
+            if (password === "") {
+                document.getElementById("passwordError").innerText = "Password is required.";
+                formIsValid = false;
+            }
+
+            // Validate confirm password
+            if (confirmPassword === "") {
+                document.getElementById("confirmPasswordError").innerText = "Confirm Password is required.";
+                formIsValid = false;
+            } else if (password !== confirmPassword) {
+                document.getElementById("confirmPasswordError").innerText = "Passwords do not match.";
+                formIsValid = false;
+            }
+
+            // Validate gender if the show gender option is selected
+            if (showGenderYes && !gender) {
+                document.getElementById("genderError").innerText = "Gender is required.";
+                formIsValid = false;
+            }
+
+            // Validate terms of service
+            if (!terms) {
+                document.getElementById("termsError").innerText = "You must agree to the Terms of Service.";
+                formIsValid = false;
+            }
+
+            // Validate I'm not a robot checkbox
+            if (!robot) {
+                document.getElementById("robotError").innerText = "Please confirm you are not a robot.";
+                formIsValid = false;
+            }
+
+            return formIsValid;
+        }
+    </script>
+</body>
+</html>
